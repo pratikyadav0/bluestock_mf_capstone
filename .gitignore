@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Database (too large for GitHub — 5.4MB)
+*.db
+data/db/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large processed files
+data/processed/returns_computed.csv
+data/processed/02_nav_history.csv
+data/processed/08_investor_transactions.csv
