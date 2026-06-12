@@ -1,196 +1,342 @@
 # Bluestock Fintech — Mutual Fund Analytics Platform
 
-## Capstone Project | End-to-End Data Engineering, ETL Pipeline & Interactive Dashboard
+## Capstone Project | End-to-End Data Engineering, Financial Analytics & Interactive Streamlit Dashboard
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-red)
 ![SQLite](https://img.shields.io/badge/Database-SQLite-green)
-![Chart.js](https://img.shields.io/badge/Dashboard-Chart.js-orange)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ---
 
-## 📋 Project Overview
+# 📋 Project Overview
 
-A full-stack **Mutual Fund Analytics Platform** that ingests publicly available data from AMFI India, transforms it through a robust ETL pipeline, stores it in a relational database, and presents insights via an interactive dashboard.
+The **Mutual Fund Analytics Platform** is a complete end-to-end Data Engineering and Analytics solution developed during the Bluestock Fintech Data Analyst Internship.
 
-**Key Features:**
-- 📊 Tracks NAV movements of 40+ mutual fund schemes from top AMCs
-- 📈 Monitors AUM growth trends for 10 largest fund houses over 4+ years
-- 👥 Analyses investor behaviour patterns across geographies & demographics
-- ⚡ Computes risk-adjusted return metrics (Sharpe, Sortino, Alpha, Beta)
-- 🎯 Benchmarks fund performance against Nifty 50, Nifty 100, BSE SmallCap
-- 🖥️ Interactive 4-page web dashboard with real-time filtering
+The project ingests publicly available mutual fund industry data, performs data cleaning and transformation through an ETL pipeline, stores processed data in a SQLite database, computes advanced financial metrics, and presents actionable insights through an interactive Streamlit dashboard.
+
+The platform enables analysis of:
+
+- Mutual Fund NAV performance
+- Asset Under Management (AUM) growth
+- SIP inflow trends
+- Investor behavior and demographics
+- Fund risk-return characteristics
+- Benchmark comparisons
+- Portfolio diversification
+- Data quality monitoring
 
 ---
 
-## 🗂️ Project Structure
+# 🚀 Key Features
 
-```
+### Data Engineering
+- Automated ETL Pipeline
+- Data Validation & Cleaning
+- SQLite Database Integration
+- Incremental Data Processing
+
+### Analytics
+- Exploratory Data Analysis (15+ Charts)
+- Fund Performance Scorecards
+- Sharpe Ratio Analysis
+- Sortino Ratio Analysis
+- Alpha & Beta Calculation
+- CAGR Computation
+- Value at Risk (VaR)
+- Correlation Analysis
+
+### Dashboard
+- Interactive Streamlit Dashboard
+- Multi-page Navigation
+- Dynamic Filters
+- KPI Cards
+- Risk Analytics
+- Automated Insights
+- Data Quality Monitoring
+
+### Advanced Features
+- Fund Recommendation Engine
+- Benchmark Comparison
+- Rolling Performance Analytics
+- Portfolio Holdings Analysis
+- Investor Segmentation
+
+---
+
+# 🗂️ Project Structure
+
+```text
 bluestock_mf_capstone/
+│
 ├── data/
-│   ├── raw/                ← 10 original CSV datasets (87K+ rows)
-│   ├── processed/          ← Cleaned CSVs + computed metrics
-│   └── db/                 ← bluestock_mf.db (SQLite database)
+│   ├── raw/
+│   ├── processed/
+│   └── db/
+│       └── bluestock_mf.db
+│
+├── notebooks/
+│   ├── 01_data_ingestion.ipynb
+│   ├── 02_data_cleaning.ipynb
+│   ├── 03_eda_analysis.ipynb
+│   ├── 04_performance_analytics.ipynb
+│   ├── 05_advanced_analytics.ipynb
+│   └── EDA_Findings.md
+│
 ├── scripts/
-│   ├── etl_pipeline.py     ← D1: Data ingestion & DB loading
-│   ├── data_cleaning.py    ← D1: Data validation & cleaning
-│   ├── live_nav_fetch.py   ← D1: Live NAV from mfapi.in
-│   ├── eda_analysis.py     ← D3: 15+ EDA charts
-│   ├── compute_metrics.py  ← D4: Performance metrics & scorecard
-│   ├── advanced_analytics.py ← D6: VaR, Rolling Sharpe, Cohorts
-│   ├── recommender.py      ← D6: Fund recommendation engine
-│   └── generate_dashboard_data.py ← D5: Dashboard JSON generation
+│   ├── data_ingestion.py
+│   ├── data_cleaning.py
+│   ├── etl_pipeline.py
+│   ├── live_nav_fetch.py
+│   ├── eda_analysis.py
+│   ├── compute_metrics.py
+│   ├── advanced_analytics.py
+│   └── recommender.py
+│
 ├── sql/
-│   ├── schema.sql          ← D2: Star schema DDL
-│   └── queries.sql         ← D2: 10 analytical SQL queries
+│   ├── schema.sql
+│   └── queries.sql
+│
 ├── dashboard/
-│   ├── index.html          ← D5: Interactive dashboard
-│   ├── style.css           ← D5: Dark glassmorphism theme
-│   ├── app.js              ← D5: Chart.js visualisations
-│   └── data/               ← JSON data for dashboard
-├── charts/                 ← 15+ exported PNG charts
+│   ├── app.py
+│   └── logo_real.png
+│
+├── charts/
+│   └── Analytical Visualizations
+│
 ├── reports/
-│   └── data_dictionary.md  ← D7: Complete schema reference
-├── run_pipeline.py         ← Master pipeline script
-├── requirements.txt        ← Python dependencies
-└── README.md               ← This file
+│   ├── Dashboard_Report.pdf
+│   ├── Bluestock_MF_Analytics.pptx
+│   └── Dashboard Screenshots
+│
+├── run_pipeline.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## 🚀 Quick Start
+# 📊 Dataset Summary
 
-### 1. Install Dependencies
+| Dataset | Description |
+|----------|------------|
+| fund_master.csv | Master list of mutual fund schemes |
+| nav_history.csv | Historical daily NAV values |
+| aum_by_fund_house.csv | Quarterly AUM by AMC |
+| monthly_sip_inflows.csv | Monthly SIP contributions |
+| category_inflows.csv | Category-wise net inflows |
+| industry_folio_count.csv | Industry folio growth |
+| scheme_performance.csv | Risk-return metrics |
+| investor_transactions.csv | Investor transaction data |
+| portfolio_holdings.csv | Portfolio allocation details |
+| benchmark_indices.csv | Market benchmark data |
+
+Total Data Processed: **87,000+ records**
+
+---
+
+# ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/bluestock_mf_capstone.git
+cd bluestock_mf_capstone
+```
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Run the Complete Pipeline
+---
+
+# ▶️ Running the Project
+
+## Run Complete Pipeline
 
 ```bash
 python run_pipeline.py
 ```
 
-This will:
-1. Ingest all 10 CSV datasets
-2. Clean and validate data
-3. Load into SQLite database
-4. Compute all performance metrics
-5. Generate EDA charts
-6. Run advanced analytics
-7. Generate dashboard data
+This executes:
 
-### 3. Open the Dashboard
-
-#### Option A: Run the Streamlit Dashboard (Recommended)
-This launches the premium, interactive Streamlit analytics platform featuring 7 pages, advanced risk analytics, data quality monitoring, and automated insights:
-
-```bash
-python -m streamlit run dashboard/app.py
-```
-
-#### Option B: Open Static Web Dashboard
-Alternatively, you can open the static HTML/JS dashboard:
-
-```bash
-# Windows
-start dashboard\index.html
-
-# Mac
-open dashboard/index.html
-```
-
-### 4. Run Individual Scripts
-
-```bash
-# ETL Pipeline only
-python scripts/etl_pipeline.py
-
-# EDA Analysis (generates 15+ charts)
-python scripts/eda_analysis.py
-
-# Performance Metrics
-python scripts/compute_metrics.py
-
-# Advanced Analytics (VaR, Cohorts, HHI)
-python scripts/advanced_analytics.py
-
-# Fund Recommender
-python scripts/recommender.py
-
-# Live NAV Fetch
-python scripts/live_nav_fetch.py
-```
+1. Data Ingestion
+2. Data Cleaning
+3. Database Loading
+4. Performance Analytics
+5. EDA Generation
+6. Advanced Analytics
+7. Dashboard Data Preparation
 
 ---
 
-## 📊 Dashboard Pages (Streamlit App)
+## Launch Streamlit Dashboard
 
-| Page | Description |
-|------|-------------|
-| **🏆 Executive Dashboard** | High-level landing page. Displays total AUM, monthly SIP inflow, total schemes, top AMC, and best performer. Includes an automated insight engine. |
-| **🌐 Industry Overview** | Visualizes historical SIP inflow trends, AUM split by AMC (Top 10), folio count growth, and category-wise monthly inflows. Filterable by Year. |
-| **⚡ Fund Performance** | Dynamic risk-return metrics (CAGR, Alpha, Beta, Sharpe, Sortino). Features a risk-return scatter bubble chart, composite rankings, and a sortable, exportable scorecard table. Filterable by AMC, Category, and Risk. |
-| **👥 Investor Analytics** | Tracks investor geographic distribution (by state), demographic splits (age groups, gender), investment type distribution (SIP vs. Lumpsum), and tier share. Filterable by State, Age, and Tier. |
-| **📈 SIP & Market Trends** | Analyzes correlations between retail savings (SIP) and market index (Nifty 50) using dual y-axes. Includes normalized benchmark index line charts and a category inflow heatmap. Filterable by Year and Category. |
-| **🛡️ Risk & Correlation** | Dedicated financial risk page displaying Value at Risk (VaR), Conditional VaR (CVaR), standard deviation vs drawdown, and correlation matrix between major benchmark indices. |
-| **📋 Data Quality Monitor** | In-app data engineering audit panel. Shows table row counts, duplicate checks, null counts, date coverage, and automated system warning flags. |
+```bash
+streamlit run dashboard/app.py
+```
 
+Dashboard will open automatically in your browser.
 
 ---
 
-## 📈 Datasets (10 CSV files, 87K+ rows)
+# 📈 Dashboard Modules
 
-| # | File | Rows | Description |
-|---|------|------|-------------|
-| 01 | fund_master.csv | 40 | Master list of 40 real MF schemes |
-| 02 | nav_history.csv | ~46K | Daily NAV (Jan 2022 – May 2026) |
-| 03 | aum_by_fund_house.csv | ~90 | Quarterly AUM for 10 fund houses |
-| 04 | monthly_sip_inflows.csv | 48 | Monthly SIP data (AMFI) |
-| 05 | category_inflows.csv | ~144 | Net inflows by category |
-| 06 | industry_folio_count.csv | 21 | Folio growth milestones |
-| 07 | scheme_performance.csv | 40 | Returns, Sharpe, Alpha, Beta |
-| 08 | investor_transactions.csv | ~32K | 5,000 investor transactions |
-| 09 | portfolio_holdings.csv | ~320 | Top equity holdings by fund |
-| 10 | benchmark_indices.csv | ~8K | Daily index values |
+## 🏢 Industry Overview
+
+- Total Industry AUM
+- AMC Market Share
+- SIP Growth Trends
+- Category Inflows
 
 ---
 
-## 🛠️ Tech Stack
+## 📊 Fund Performance
+
+- CAGR
+- Alpha
+- Beta
+- Sharpe Ratio
+- Sortino Ratio
+- Risk-Return Analysis
+- Fund Ranking Scorecard
+
+---
+
+## 👥 Investor Analytics
+
+- State-wise Distribution
+- Age Group Analysis
+- Gender Distribution
+- SIP vs Lumpsum Participation
+
+---
+
+## 📈 SIP & Market Trends
+
+- SIP Growth Tracking
+- Nifty Benchmark Comparison
+- Market Correlation Analysis
+- Category Heatmaps
+
+---
+
+## 🛡️ Risk Analytics
+
+- Value at Risk (VaR)
+- Volatility Analysis
+- Drawdown Analysis
+- Correlation Matrix
+
+---
+
+## 📋 Data Quality Monitor
+
+- Missing Values
+- Duplicate Detection
+- Table Health Checks
+- Dataset Validation Metrics
+
+---
+
+# 📌 Financial Metrics Implemented
+
+### Return Metrics
+
+- CAGR
+- Annual Return
+- Rolling Return
+
+### Risk Metrics
+
+- Standard Deviation
+- Beta
+- Maximum Drawdown
+- Value at Risk (VaR)
+
+### Risk-Adjusted Metrics
+
+- Sharpe Ratio
+- Sortino Ratio
+- Alpha
+
+---
+
+# 🛠️ Technology Stack
 
 | Category | Technology |
-|----------|-----------|
-| Language | Python 3.10+ |
-| Data | Pandas, NumPy |
-| Database | SQLite3, SQLAlchemy |
-| Visualisation | Matplotlib, Seaborn, Chart.js |
-| Statistics | SciPy (OLS regression) |
-| Dashboard | HTML5, CSS3, JavaScript |
-| API | mfapi.in (live NAV) |
+|-----------|------------|
+| Programming | Python 3.10 |
+| Data Processing | Pandas, NumPy |
+| Database | SQLite |
+| Analytics | SciPy |
+| Visualization | Plotly, Matplotlib, Seaborn |
+| Dashboard | Streamlit |
+| Version Control | Git, GitHub |
+| Data Source | AMFI India, mfapi.in |
 
 ---
 
-## 📄 Deliverables
+# 📄 Project Deliverables
 
-| # | Deliverable | Weight | Format |
-|---|------------|--------|--------|
-| D1 | ETL Pipeline Script | 15% | Python .py |
-| D2 | SQLite Database | 10% | .db file |
-| D3 | EDA Notebook | 15% | Python script + 15 PNGs |
-| D4 | Performance Metrics | 15% | Python + CSVs |
-| D5 | Interactive Dashboard | 20% | HTML/CSS/JS |
-| D6 | Advanced Analytics | 10% | Python + CSVs |
-| D7 | Final Report + README | 15% | Markdown + PDF |
-
----
-
-## ⚠️ Disclaimer
-
-All data is sourced from publicly available AMFI India data, mfapi.in, and financial news sources. This project is for **educational purposes only** and does not constitute financial advice. Mutual Fund investments are subject to market risks.
+| Deliverable | Status |
+|-------------|---------|
+| ETL Pipeline | ✅ Completed |
+| Data Cleaning | ✅ Completed |
+| SQLite Database | ✅ Completed |
+| EDA Analysis | ✅ Completed |
+| Performance Analytics | ✅ Completed |
+| Advanced Analytics | ✅ Completed |
+| Interactive Dashboard | ✅ Completed |
+| Final Report | ✅ Completed |
+| Presentation Deck | ✅ Completed |
 
 ---
 
-**Prepared by:** Pratik Kumar Yadav — Data Analyst Intern, Bluestock Fintech  
-**Date:** June 2026  
-**Company:** Bluestock Fintech Pvt. Ltd.
+# 🎯 Business Impact
+
+This project demonstrates:
+
+- Data Engineering Pipeline Design
+- Financial Data Analysis
+- Database Management
+- Statistical Modeling
+- Dashboard Development
+- Business Intelligence Reporting
+- End-to-End Analytics Workflow
+
+---
+
+# ⚠️ Disclaimer
+
+This project is developed for educational and analytical purposes only.
+
+Data has been sourced from publicly available mutual fund and financial market resources. The analysis presented should not be considered investment advice.
+
+Mutual Fund investments are subject to market risks. Please read all scheme-related documents carefully before investing.
+
+---
+
+# 👨‍💻 Author
+
+**Pratik Kumar Yadav**  
+Data Analyst Intern — Bluestock Fintech
+
+### Skills Demonstrated
+
+- Python
+- SQL
+- SQLite
+- Pandas
+- NumPy
+- Streamlit
+- Data Visualization
+- Financial Analytics
+- ETL Pipelines
+- Business Intelligence
+
+---
+
+⭐ If you found this project useful, consider giving it a star on GitHub.
